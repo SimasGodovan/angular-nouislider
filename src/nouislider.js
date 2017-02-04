@@ -12,7 +12,7 @@ angular.module('nouislider', []).directive('slider', function () {
       options: '=',
       onSet: '=?'
     },
-    link: function (scope, element, attrs) {
+    link: function (scope, element) {
       var fromParsed, parsedValue, slider, toParsed;
       slider = element[0];
       var options = {};
@@ -22,7 +22,7 @@ angular.module('nouislider', []).directive('slider', function () {
         fromParsed = null;
         toParsed = null;
 
-        var options = angular.extend({
+        options = angular.extend({
           start: [
             scope.ngFrom || scope.min,
             scope.ngTo || scope.max
@@ -32,7 +32,7 @@ angular.module('nouislider', []).directive('slider', function () {
             min: [parseFloat(scope.min)],
             max: [parseFloat(scope.max)]
           },
-          connect: true,
+          connect: true
         }, scope.options || {});
 
         noUiSlider.create(slider, options);
@@ -72,7 +72,7 @@ angular.module('nouislider', []).directive('slider', function () {
 
         parsedValue = null;
 
-        var options = angular.extend({
+        options = angular.extend({
           start: scope.ngModel ? scope.ngModel : [scope.min],
           step: parseFloat(scope.step || 1),
           range: {
@@ -106,3 +106,4 @@ angular.module('nouislider', []).directive('slider', function () {
     }
   };
 });
+
